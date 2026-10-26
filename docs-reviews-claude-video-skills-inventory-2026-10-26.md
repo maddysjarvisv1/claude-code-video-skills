@@ -1,0 +1,71 @@
+# Claude Code video skills inventory
+
+Generated 2026-10-26. Scope: video generation, composition, animation, captioning, or editing skills discovered in the fleet and installable as Markdown skill directories for Claude Code.
+
+| Skill | Claude-Code targeted | Usable by Claude Code | What it does |
+|---|---:|---:|---|
+| `ascii-video` | No | Yes | ASCII video: convert video/audio to colored ASCII MP4/GIF. |
+| `autonomous-video-editor` | No | Yes | Use when editing a raw video into a polished cut. |
+| `cut-mistakes` | No | Yes | Agent 2 of the video editing pipeline. Finds and removes spoken mistakes — stutters, repeated words, false starts, and retakes (re-recorded lines) — from a talking-head recording. Use after cut-silences, when asked to cut mistakes, remove stutters / repeats / filler restarts, clean up flubs, or keep the best take. Works review-gated: it proposes every cut with context and a reason for approval, then renders only the approved cuts via ffmpeg. Requires a word-level transcript. |
+| `cut-silences` | No | Yes | Agent 1 of the video editing pipeline. Removes silences and dead air from a talking-head recording. Use when asked to cut silences, trim pauses, remove dead air / gaps, or tighten the pacing of a raw video, given a word-level transcript. Produces an edit list (EDL), a re-timed transcript for downstream agents, and optionally the cut video via ffmpeg. Does NOT cut mistakes, repeats, or false starts — that is the cut-mistakes agent. |
+| `edit-video` | No | Yes | Edit a raw talking-head video through transcription, silence trimming, mistake review, visual storytelling, motion graphics, and verified HyperFrames rendering. Use for a complete edit; route a single requested operation directly to its specialist skill. |
+| `embedded-captions` | Yes | Yes | > |
+| `faceless-explainer` | Yes | Yes | Turn arbitrary text — an article, notes, a topic, a brief — into a faceless explainer video: there is no site or footage to capture, so the visuals are invented per scene (typography, abstract graphics, diagrams, data-viz). Use for topic explainers, concept breakdowns, how-tos, listicles. Not a video built from a website (/product-launch-video — promo or tour). Unclear → /hyperframes. |
+| `general-video` | Yes | Yes | > |
+| `gsap` | No | Yes | GSAP animation reference for HyperFrames. Covers gsap.to(), from(), fromTo(), easing, stagger, defaults, timelines (gsap.timeline(), position parameter, labels, nesting, playback), and performance (transforms, will-change, quickTo). Use when writing GSAP animations in HyperFrames compositions. |
+| `hyperframes` | Yes | Yes | > |
+| `hyperframes-animation` | Yes | Yes | All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic. |
+| `hyperframes-audio` | Yes | Yes | > |
+| `hyperframes-cli` | Yes | Yes | > |
+| `hyperframes-core` | Yes | Yes | The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class="clip"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Read before writing composition HTML. |
+| `hyperframes-creative` | Yes | Yes | Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`. |
+| `hyperframes-explainer-video` | No | Yes | Use when building HyperFrames explainer videos. |
+| `hyperframes-keyframes` | Yes | Yes | > |
+| `hyperframes-registry` | Yes | Yes | Search, install, and wire registry blocks and components into HyperFrames compositions. Use BEFORE hand-building any named visual — whenever a brief, a user, or a storyboard names a look, effect, treatment, or transition such as CRT scanlines, glitch, chromatic aberration, film grain, a shimmer sweep, a chart, a code or terminal window, a map, or a confetti burst — because roughly 400 hosted items already cover many of them and the search ranks all of them with nothing installed, no project, and no account. Also use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR). |
+| `hyperframes-studio` | Yes | Yes | > |
+| `hyperframes-video-beats` | No | Yes | Plan, write, time, style, and validate motion-graphic beats for long-form talking-head HyperFrames videos. Use when Codex is asked to add or improve visual beats, glassmorphism lower thirds, crumpled-paper full-screen takeovers, transcript-synced callouts, pacing coverage, YouTube retention graphics, or render-ready overlays in an existing HyperFrames video project. |
+| `hyperframes-video-production` | No | Yes | Build narrated HyperFrames videos to MP4, verified. |
+| `kinetic-multicam` | No | Yes | Use when the user drops or points at a local talking-head video and wants the kinetic supers + rapid camera reposition prompt for video-to-video AI (one real take turned into split-second camera snaps that lock off, with bold motion-graphics text synced to the speech). Triggers on /kinetic-multicam, "kinetic supers", "kinetic typography video", a dropped .mp4 plus a motion-graphics-text + camera request. PT examples for reliability, "faz o prompt de kinetic supers desse vídeo", "gera supers cinéticos com cortes de câmera", "bota motion graphics e câmera nesse take". |
+| `make-a-video` | No | Yes | Beginner-friendly end-to-end video creator for HyperFrames. Use when the user says "make a video", "create a video", "new video", "build a video", "video from scratch", "I want to make a video", "help me create a video", or when someone who's never used HyperFrames before arrives with a concept, script, or rough idea and wants a finished MP4. Interviews the user in one pass, then builds the full video with mandatory preview and visual-verification gates. |
+| `manim-video` | No | Yes | Manim CE animations: 3Blue1Brown math/algo videos. |
+| `media-use` | Yes | Yes | Agent Media OS for a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Also use for vague feedback that real footage looks dark, flat, boring, should feel retro/camcorder/print/ASCII, needs privacy, or needs a media reveal. When the host app provides its own music or sound-effect tools, use those for music and sound effects; `resolve --type bgm\|sfx` needs the heygen CLI. When `HEYGEN_API_BASE` is set, HeyGen calls go through that host with no CLI sign-in. |
+| `motion-graphics` | No | Yes | Local-only, zero-credit procedural motion-graphics in HyperFrames: 5 named styles + dynamic style menu from [REDACTED_PATH]/skills-index.json (45 Lemo styles + Herk cards), storyboard-first approval gate, SFX cue table export (CSV/MD), and one-scene re-render isolation (keep v1, save v2, untouched scenes byte-identical). |
+| `motion-showreel` | No | Yes | Design and build a 10-30 second motion-design showreel or brand reel in the style of Nate's Opus 5.5 "CLAUDE / MOTION REEL": one brand motif transformed through labeled craft chapters, a persistent HUD, cuts locked to a 120-130 BPM grid, a sub-second flurry, and a held logo lockup that answers the opening. Use when asked for a showreel, sizzle reel, brand reel, motion reel, "a reel like the Opus one", "show off motion design for <brand>", a 15-second brand film cut to music, or to study why a reference reel works and rebuild that energy for another brand. |
+| `music-to-video` | Yes | Yes | Turn a music track (an audio file, a video to pull audio from, or a track generated from a mood brief) into a beat-synced video — lyric video, slideshow, or kinetic promo. The music drives all pacing; any user-supplied images/videos are cut onto the same beat grid, and a complete video needs zero assets. Narrated pieces → the input-matched workflow (see /hyperframes). Unclear → /hyperframes. |
+| `pr-to-video` | Yes | Yes | Turn a GitHub pull request (a PR URL, owner/repo#N, or 'this PR' in a checked-out repo) into a code-change explainer video — changelog, feature reveal, fix, or refactor walkthrough built from the diff, commits, and files: the input is a code change, not a website. Not a product promo (/product-launch-video) or a no-PR topic explainer (/faceless-explainer). Unclear → /hyperframes. |
+| `product-launch-video` | Yes | Yes | Turn a product or marketing URL, pasted script, or brief into a product launch / promo video — SaaS promos, feature reveals, product demos, app and company launches. Use when the user wants to market, launch, promote, or reveal a product; the default for any commercial URL. Site tours / showcases of a website route here too — the brief carries the show-it-as-is intent. Unclear → /hyperframes. |
+| `remotion-to-hyperframes` | Yes | Yes | Port an existing Remotion (React) composition''s source to HyperFrames HTML. Use ONLY on an explicit ask to port/convert/migrate/translate a Remotion source — one-way, Remotion-only. A passing Remotion mention, reference-only code, or "make something like my Remotion video" is a fresh build (/general-video). Unclear → /hyperframes. |
+| `remotion-video` | No | Yes | Use when building or editing video with Remotion (React). |
+| `short-form-edit` | No | Yes | Turn talking-head footage into a finished reel, YouTube Short, or short advertisement with curiosity-led openings, earned payoffs, story-driven cuts, transcript-synced motion graphics, moving B-roll, captions, subtle music, and synchronized sound effects. Use for short-form editing; use edit-video for long-form videos and cut-silences for pause removal alone. |
+| `short-form-video` | No | Yes | Maintain the existing May Shorts teaching compositions using their legacy face-mode, scene-overlay, and karaoke-caption patterns. Use only when working on those examples or explicitly requesting this legacy scaffold. For new reels, Shorts, or short advertisements, use short-form-edit. |
+| `ultron-video-pipeline` | No | Yes | Run Ultron's generative 10-stage brief-to-Discord video pipeline (code-drawn visuals by default). |
+| `video-storytelling` | No | Yes | Design and build the visual layer of a long-form talking-head video as one persistent world the camera moves through, instead of a sequence of separate graphics. Use when asked to edit a video, add motion graphics, design the visuals for a script, plan an edit, or fix an edit judged confusing, text-heavy, hard to follow, or "clearly made by an AI". Covers the persistent world, camera grammar, the spotlight rule, spatial open loops, ornament and token discipline, transcript timing, and the verification gates. |
+| `video-style-sampler` | No | Yes | Compare video styles side-by-side for owner selection. |
+| `videogen-openrouter` | No | Yes | Use when generating video with OpenRouter's video API. |
+| `website-to-hyperframes` | No | Yes | \| |
+
+## Classification
+
+- **Claude-Code targeted** means the canonical copy was found in the fleet’s Claude Code skills tree.
+- **Usable by Claude Code** means the skill is a self-contained Markdown skill directory that can be installed under `.claude/skills/`; it is not a claim that every external runtime dependency is installed.
+- Shared/Hermes-origin skills are included because Claude Code can consume the same SKILL.md workflow after installation.
+
+## Secret and privacy review
+
+- Scanned every copied file before publication and again after sanitization. Inventory contains 39 skills.
+- No API-key, token, password, private-key, session-cookie, customer-name, personal-email, internal-hostname, VPS-IP, or webhook-secret value is intentionally published.
+- Redacted local absolute paths, personal-looking email/phone/IP/large numeric identifiers, credential-like fixture literals, and test-only credential examples where encountered.
+- Generic references to environment-variable names (for example `OPENROUTER_API_KEY`) remain because they are configuration names, not secret values.
+- Symlinked files were not dereferenced into the public copy; the inventory records those omissions as redactions/decisions in `inventory.json`.
+- Redaction log: local absolute paths such as `<local-path>` → `[REDACTED_PATH]`; personal-looking emails → `[REDACTED_EMAIL]`; phone-like literals → `[REDACTED_PHONE]`; large numeric IDs → `[REDACTED_ID]`; credential-like literals in `media-use` tests/scripts → `[REDACTED]`; credential-fixture examples in `ultron-video-pipeline/scripts/test_corpus_index.py` (Stripe, GitHub, Google, bearer, webhook, and generic high-entropy examples) → neutral `[REDACTED...]` placeholders; symlink targets → omitted rather than dereferenced.
+
+## Installation
+
+Copy or clone the desired skill directories into a Claude Code project or user skills directory:
+
+```bash
+git clone https://github.com/maddysjarvisv1/claude-code-video-skills.git
+cp -R claude-code-video-skills/skills/<skill-name> .claude/skills/
+```
+
+Read the skill’s `SKILL.md` before use and install its documented runtime dependencies separately.
