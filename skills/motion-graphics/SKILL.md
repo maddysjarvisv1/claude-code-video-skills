@@ -1,6 +1,6 @@
 ---
 name: motion-graphics
-description: "Local-only, zero-credit procedural motion-graphics in HyperFrames: 5 named styles + dynamic style menu from [REDACTED_PATH] (45 Lemo styles + Herk cards), storyboard-first approval gate, SFX cue table export (CSV/MD), and one-scene re-render isolation (keep v1, save v2, untouched scenes byte-identical)."
+description: "Local-only, zero-credit procedural motion-graphics in HyperFrames: 5 named styles + dynamic style menu from <home>/skills-index.json (45 Lemo styles + Herk cards), storyboard-first approval gate, SFX cue table export (CSV/MD), and one-scene re-render isolation (keep v1, save v2, untouched scenes byte-identical)."
 category: creative
 ---
 
@@ -15,10 +15,10 @@ Build design-led motion graphics and narrated vertical/horizontal reels locally 
    - Do **not** call `GEMINI_API_KEY`, `GOOGLE_API_KEY`, OpenRouter video generation, paid stock APIs, or external asset downloaders.
    - All visuals, cards, charts, UI chrome, textures, and transitions are procedurally drawn locally in HTML/CSS/SVG/Canvas2D.
 3. **DO NOT DUPLICATE EXTERNAL SKILL COPIES — REFERENCE THEM**:
-   - Base HyperFrames category modules (`categories/<id>/module.md`), subagent prompts (`agents/director.md`, `agents/builder.md`, `agents/finalize.md`), and block catalog (`catalog-map.md`, `references/motion-vocabulary.md`) live at `[REDACTED_PATH]` and `[REDACTED_PATH]` (symlinked into this skill directory without file duplication).
-   - Narrated production rules & verification gates follow `[REDACTED_PATH]` and `[REDACTED_PATH]`.
+   - Base HyperFrames category modules (`categories/<id>/module.md`), subagent prompts (`agents/director.md`, `agents/builder.md`, `agents/finalize.md`), and block catalog (`catalog-map.md`, `references/motion-vocabulary.md`) live at `<claude-home>/skills/motion-graphics` and `<agents-home>/skills/motion-graphics` (symlinked into this skill directory without file duplication).
+   - Narrated production rules & verification gates follow `<hermes-home>/skills/creative/hyperframes-video-production/SKILL.md` and `<hermes-home>/skills/software-development/verification-contract/SKILL.md`.
 4. **VOICEOVER IS MEASURED TO EXACT WORD SECONDS (LEVEL 3 CHOREOGRAPHY)**:
-   - Synthesize voiceover locally via **Kokoro ONNX** (`env -u PYTHONPATH [REDACTED_PATH]`) or free Edge TTS — or accept a user-supplied local audio file — and measure exact word timestamps via local **`faster-whisper`** (`~/.hermes/cache/opt/whisper-venv`, `base.en`, `word_timestamps=True`) into `words.json` (`[{w, s, e}, ...]`), locking `EDL.json` (`action_cues` bound to exact spoken-word seconds) *before* writing scene drawing code ("Plan it once, check it, code it once, check it, then render it once"; full SOP: `[REDACTED_PATH]`). *(Honest capability note: we do **not** have ElevenLabs voices or music/SFX installed; use local Kokoro/Edge TTS + procedural Python `sfx.py`/`make_audio.py`.)* *Why:* "When the voice says, 'He struck,' the blade moves on struck, not near it, on it" — TTS line durations only bound whole sentences, leaving intra-scene drawing actions guessing the beat unless Whisper listens back first.
+   - Synthesize voiceover locally via **Kokoro ONNX** (`env -u PYTHONPATH <home>/lemo-opuscar/.venv/bin/python`) or free Edge TTS — or accept a user-supplied local audio file — and measure exact word timestamps via local **`faster-whisper`** (`~/.hermes/cache/opt/whisper-venv`, `base.en`, `word_timestamps=True`) into `words.json` (`[{w, s, e}, ...]`), locking `EDL.json` (`action_cues` bound to exact spoken-word seconds) *before* writing scene drawing code ("Plan it once, check it, code it once, check it, then render it once"; full SOP: `<jarvis-repo>/brain/sops/one-line-film-workflow.md`). *(Honest capability note: we do **not** have ElevenLabs voices or music/SFX installed; use local Kokoro/Edge TTS + procedural Python `sfx.py`/`make_audio.py`.)* *Why:* "When the voice says, 'He struck,' the blade moves on struck, not near it, on it" — TTS line durations only bound whole sentences, leaving intra-scene drawing actions guessing the beat unless Whisper listens back first.
 5. **STORYBOARD-FIRST APPROVAL GATE (HARD STOP BEFORE RENDER)**:
    - Phase 1 produces the **Storyboard Table** (one scene per row) and posts it for owner approval. **Never render in Phase 1.** Changing a row in the storyboard table costs $0 and 0 render seconds.
 
@@ -26,21 +26,21 @@ Build design-led motion graphics and narrated vertical/horizontal reels locally 
 
 ## 1. Named Style Menu (5 Signature Styles + Dynamic Index Query)
 
-Users can pick from the **5 Named Signature Styles** below by name (matching and exceeding the AIpreneur 5-style workflow), or query the full local catalog of **45 Lemo styles** and **Herk Edit Kit cards/templates** dynamically from `[REDACTED_PATH]`.
+Users can pick from the **5 Named Signature Styles** below by name (matching and exceeding the AIpreneur 5-style workflow), or query the full local catalog of **45 Lemo styles** and **Herk Edit Kit cards/templates** dynamically from `<home>/skills-index.json`.
 
 ### The 5 Named Signature Styles
 
 | # | Style Name (`slug`) | Visual Identity (Palette, Type & Motion) | When to Use (One-Line Purpose) | Local Backing Spec / Cards |
 |---|---|---|---|---|
-| 1 | **`editorial-collage`** | Warm archive paper (`#EFE9DC`), warm ink (`#17130E`), cutout orange (`#F26A1B`), editorial red (`#E23B2E`), AIS blue (`#37BDF8`); `Fraunces` serif + `Archivo` + `Caveat` margin notes; torn-paper strips sweep in, halftone cutouts, choppy low-shutter stop-motion cadence. | **Vox-style editorial explainers**: history, research, investigative breakdowns, and document-led storytelling. | `[REDACTED_PATH]` (106 cards in `registry.json`) + `[REDACTED_PATH]` |
-| 2 | **`kallaway-glass`** | Near-black cool canvas (`#080B12`) with deep cyan/indigo aurora glow (`#38BDF8`, `#818CF8`); frosted glass panels (`backdrop-filter`, 1px specular border highlights, heavy soft shadow); oversized gradient hero numbers; smooth inertial spring motion (`easeOutBack`). | **Premium dark tech & creator explainers**: SaaS, AI, business breakdowns, and high-retention hero metrics. | `[REDACTED_PATH]` (300 cards in `registry.json`) + `[REDACTED_PATH]` + `[REDACTED_PATH]` |
-| 3 | **`bento-grid`** | Crisp modular bento tile grid on matte slate (`#0F1115`) or clean studio white (`#F8FAFC`) with lime highlighter accents (`#A3E635` / `#84CC16`); geometric sans + monospace step badges; tile-by-tile staggered reveals with inline vector mini-charts (uses step numbers when script has no figures — never invents stats). | **Numbers, lists & structured frameworks**: step-by-step systems, multi-point comparisons, and KPIs. | `[REDACTED_PATH]` + `[REDACTED_PATH]` + `[REDACTED_PATH]` |
-| 4 | **`neo-brutal`** | High-voltage yellow ground (`#FACC15` / `#FFE600`), 3–4px pure black ink borders (`#0A0A0A`), hard offset shadows (`6px 6px 0 #000000`), heavy grotesk display type; keywords slam onto cards as colored vector stickers (`#FF3366`, `#00F5D4`, `#FFFFFF`) with snappy overshoot and final-line freeze hold. | **Contrarian hooks & punchy takes**: myth-busting shorts, bold rules, and high-contrast pattern interrupts. | `[REDACTED_PATH]` + `[REDACTED_PATH]` |
-| 5 | **`youtube-clean`** | Clean white/light-gray studio grid (`#F9FAFB` / `#FFFFFF`), slate ink (`#111827`), signature crimson (`#EF4444` / `#FF0000`) + neutral gray card stacks (`#E5E7EB`); vector player chrome, watch-time progress scrubbers, live countdown timers, and card stack sinks. | **Creator economy & platform/UI stories**: algorithm mechanics, retention breakdowns, and product walkthroughs. | `[REDACTED_PATH]` + `[REDACTED_PATH]` |
+| 1 | **`editorial-collage`** | Warm archive paper (`#EFE9DC`), warm ink (`#17130E`), cutout orange (`#F26A1B`), editorial red (`#E23B2E`), AIS blue (`#37BDF8`); `Fraunces` serif + `Archivo` + `Caveat` margin notes; torn-paper strips sweep in, halftone cutouts, choppy low-shutter stop-motion cadence. | **Vox-style editorial explainers**: history, research, investigative breakdowns, and document-led storytelling. | `<home>/herk-edit-kit/style-library/01-vox-explainer/DESIGN.md` (106 cards in `registry.json`) + `<home>/lemo-opuscar/styles/halftone-dossier/STYLE.md` |
+| 2 | **`kallaway-glass`** | Near-black cool canvas (`#080B12`) with deep cyan/indigo aurora glow (`#38BDF8`, `#818CF8`); frosted glass panels (`backdrop-filter`, 1px specular border highlights, heavy soft shadow); oversized gradient hero numbers; smooth inertial spring motion (`easeOutBack`). | **Premium dark tech & creator explainers**: SaaS, AI, business breakdowns, and high-retention hero metrics. | `<home>/herk-edit-kit/style-library/02-kallaway/DESIGN.md` (300 cards in `registry.json`) + `<home>/herk-edit-kit/style-templates/left-glass-popout/DESIGN.md` + `<home>/lemo-opuscar/styles/dark-keynote/STYLE.md` |
+| 3 | **`bento-grid`** | Crisp modular bento tile grid on matte slate (`#0F1115`) or clean studio white (`#F8FAFC`) with lime highlighter accents (`#A3E635` / `#84CC16`); geometric sans + monospace step badges; tile-by-tile staggered reveals with inline vector mini-charts (uses step numbers when script has no figures — never invents stats). | **Numbers, lists & structured frameworks**: step-by-step systems, multi-point comparisons, and KPIs. | `<home>/herk-edit-kit/style-templates/dark-graph-paper-template/DESIGN.md` + `<home>/lemo-opuscar/styles/swiss-motion/STYLE.md` + `<home>/lemo-opuscar/styles/dataviz/STYLE.md` |
+| 4 | **`neo-brutal`** | High-voltage yellow ground (`#FACC15` / `#FFE600`), 3–4px pure black ink borders (`#0A0A0A`), hard offset shadows (`6px 6px 0 #000000`), heavy grotesk display type; keywords slam onto cards as colored vector stickers (`#FF3366`, `#00F5D4`, `#FFFFFF`) with snappy overshoot and final-line freeze hold. | **Contrarian hooks & punchy takes**: myth-busting shorts, bold rules, and high-contrast pattern interrupts. | `<home>/lemo-opuscar/styles/pictogram-motion/STYLE.md` + `<home>/lemo-opuscar/styles/silkscreen-poster/STYLE.md` |
+| 5 | **`youtube-clean`** | Clean white/light-gray studio grid (`#F9FAFB` / `#FFFFFF`), slate ink (`#111827`), signature crimson (`#EF4444` / `#FF0000`) + neutral gray card stacks (`#E5E7EB`); vector player chrome, watch-time progress scrubbers, live countdown timers, and card stack sinks. | **Creator economy & platform/UI stories**: algorithm mechanics, retention breakdowns, and product walkthroughs. | `<home>/lemo-opuscar/styles/living-screencast/STYLE.md` + `<claude-home>/skills/motion-graphics/categories/kinetic-type/module.md` |
 
 ### Command 1: `list styles` ("What styles do I have and what is each for?")
 
-Never hard-code the full catalog in prompts. Run this local command to print the 5 named signature styles followed by all **45 Lemo styles** and **Herk Edit Kit styles/templates/cards** read directly from `[REDACTED_PATH]` and `[REDACTED_PATH]`:
+Never hard-code the full catalog in prompts. Run this local command to print the 5 named signature styles followed by all **45 Lemo styles** and **Herk Edit Kit styles/templates/cards** read directly from `<home>/skills-index.json` and `<home>/herk-edit-kit/style-library/registry.json`:
 
 ```bash
 python3 -c '
@@ -57,7 +57,7 @@ print("=== 5 NAMED SIGNATURE STYLES ===")
 for slug, purpose in NAMED_5:
     print(f"  - {slug}: {purpose}")
 
-with open("[REDACTED_PATH]", encoding="utf-8") as f:
+with open("<home>/skills-index.json", encoding="utf-8") as f:
     idx = json.load(f)
 
 lemo = {}
@@ -69,17 +69,17 @@ for e in idx:
     elif cat == "herk-edit-kit":
         herk.append(e)
 
-print(f"\n=== LEMO CODE-DRAWN STYLES ({len(lemo)} from [REDACTED_PATH]) ===")
+print(f"\n=== LEMO CODE-DRAWN STYLES ({len(lemo)} from <home>/skills-index.json) ===")
 for name in sorted(lemo):
     purpose = lemo[name]["purpose"]
     print(f"  - {name}: {purpose}")
 
-print(f"\n=== HERK EDIT KIT STYLES & TEMPLATES ({len(herk)} from [REDACTED_PATH]) ===")
+print(f"\n=== HERK EDIT KIT STYLES & TEMPLATES ({len(herk)} from <home>/skills-index.json) ===")
 for e in herk:
     ename, ekind, epurpose = e["name"], e["kind"], e["purpose"]
     print(f"  - {ename} ({ekind}): {epurpose}")
 
-with open("[REDACTED_PATH]", encoding="utf-8") as f:
+with open("<home>/herk-edit-kit/style-library/registry.json", encoding="utf-8") as f:
     reg = json.load(f)
 card_count, style_count = reg["cardCount"], reg["styleCount"]
 print(f"\n=== HERK STYLE-LIBRARY CARDS ({card_count} cards across {style_count} styles) ===")
@@ -107,11 +107,11 @@ flowchart LR
 ### Phase 1: Storyboard Table & Approval Gate (NO RENDERING)
 
 1. **Select Style & Aspect**:
-   - Pick a named style from the 5-style menu (or a slug from `[REDACTED_PATH]`) and target aspect (`9:16` vertical `1080×1920` for reels/Shorts, or `16:9` `1920×1080` for explainers).
+   - Pick a named style from the 5-style menu (or a slug from `<home>/skills-index.json`) and target aspect (`9:16` vertical `1080×1920` for reels/Shorts, or `16:9` `1920×1080` for explainers).
 2. **Voiceover Measurement / Timing Plan**:
    - If an audio file is provided or synthesized locally (Kokoro ONNX / Edge TTS), run `faster-whisper` (`~/.hermes/cache/opt/whisper-venv`, `base.en`, `word_timestamps=True`) to get exact word timestamps (`words.json`).
    - If planning pre-VO in Phase 1, budget spoken lines at `≤ 3.0–3.5 words/sec` with `0.3–0.6s` breath pauses between scenes and a `0.5s` silence before the final payoff line; lock exact Whisper word timestamps at the start of Phase 2 before drawing.
-3. **Write the Storyboard Table (`[REDACTED_PATH]>-v1.md`)**:
+3. **Write the Storyboard Table (`<home>/content-pipeline/storyboards/<slug>-v1.md`)**:
    - Must contain **one scene per row** covering the full duration (e.g., 7–8 scenes for a 30.0s vertical reel, each scene `3.0–5.0s` so no beat exceeds the retention ceiling).
    - **Mandatory Storyboard Table Columns**:
 
@@ -123,8 +123,8 @@ flowchart LR
    - Document any custom vector primitives built for the script (e.g., custom closed-eye icon, full-screen card stack sink, live player scrub timer) while keeping the chosen style's exact palette tokens, typography, and motion easing.
    - Explicitly state: `Local only • Vector text only • 0 image-gen calls • 0 video credits • Nothing rendered yet`.
 5. **Commit & Post for Owner Approval (HARD STOP)**:
-   - Commit the storyboard file in `[REDACTED_PATH]`.
-   - Post the storyboard as **one message** to Discord channel `[REDACTED_PHONE]` (`#content-pipeline`) using `DISCORD_BOT_TOKEN` from `[REDACTED_PATH]` (never print the token), ending with:
+   - Commit the storyboard file in `<home>/content-pipeline`.
+   - Post the storyboard as **one message** to Discord channel `1561298450664923167` (`#content-pipeline`) using `DISCORD_BOT_TOKEN` from `<hermes-home>/.env` (never print the token), ending with:
      `Storyboard for approval: reply APPROVE or request changes`
    - **Read-Back Verification**: Fetch the posted Discord message ID back from the API to confirm delivery.
    - **STOP IMMEDIATELY.** Do not run `hyperframes render` or `ffmpeg` in Phase 1. Phase 2 starts only after the owner replies `APPROVE` in `#content-pipeline` and instructs Jarvis to render.
@@ -133,7 +133,7 @@ flowchart LR
 
 ## 3. SFX Cue Table Format (`sfx-cues.md` & `sfx-cues.csv`)
 
-Every composition must emit a standalone, editor-ready **SFX Cue Table** (`sfx-cues.md` and `sfx-cues.csv`) derived deterministically from the storyboard / `EDL.json` (`audio.sfx[]` and `action_cues[]`, following the `[REDACTED_PATH]` precedent).
+Every composition must emit a standalone, editor-ready **SFX Cue Table** (`sfx-cues.md` and `sfx-cues.csv`) derived deterministically from the storyboard / `EDL.json` (`audio.sfx[]` and `action_cues[]`, following the `<home>/malligi-reel/EDL.json` precedent).
 
 ### Standard SFX Cue Table Columns
 
@@ -278,7 +278,7 @@ When the owner says *"Change Scene `K`: <one-sentence instruction>"*:
 
 ## 5. Base HyperFrames Block & Category Dispatch (Referenced, Not Duplicated)
 
-For single-shot overlays or category-specific building blocks, this skill references the existing HyperFrames modules in `[REDACTED_PATH]` (and `[REDACTED_PATH]`) via local symlinks:
+For single-shot overlays or category-specific building blocks, this skill references the existing HyperFrames modules in `<claude-home>/skills/motion-graphics` (and `<agents-home>/skills/motion-graphics`) via local symlinks:
 
 - **Director & Builder Subagent Prompts**: `agents/director.md`, `agents/builder.md`, `agents/finalize.md`
 - **Block Catalog & Motion Vocabulary**: `catalog-map.md`, `references/motion-vocabulary.md`, `references/shot-plan-ir.md`, `references/builder-contract.md`

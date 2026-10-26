@@ -76,7 +76,7 @@ the speech. Read the tilt across a few 1/3-octave bands rather than any single
 one — `1k / 3.2k / 5k / 7k` is enough to see a shelf:
 
 ```bash
-for f in [REDACTED_PHONE]; do third voice.wav $f; done
+for f in 1000 3200 5000 7000; do third voice.wav $f; done
 ```
 
 Speech falls away steadily above about 1 kHz, so a downward slope is expected;

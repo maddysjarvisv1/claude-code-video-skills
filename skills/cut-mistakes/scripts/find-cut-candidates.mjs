@@ -52,7 +52,7 @@ function fmt(s) {
 const words = transcript.words
   .filter((w) => (w.type ? w.type === "word" : true))
   .filter((w) => Number.isFinite(Number(w.start)) && Number.isFinite(Number(w.end)))
-  .map((w, index) => ({ index, text: w.text, token: [REDACTED] start: Number(w.start), end: Number(w.end) }));
+  .map((w, index) => ({ index, text: w.text, token: cleanToken(w.text), start: Number(w.start), end: Number(w.end) }));
 
 if (words.length === 0) { console.error("no timed words"); exit(1); }
 
@@ -66,7 +66,7 @@ for (let i = 1; i < words.length; i++) {
   const a = words[i - 1], b = words[i];
   if (!b.token || b.token.length < 1) continue;
   const closeGap = b.start - a.end < 0.5;
-  if (a.token =[REDACTED] b.token && closeGap) {
+  if (a.token === b.token && closeGap) {
     candidates.push({
       id: `c${String(++cid).padStart(3, "0")}`,
       type: "stutter",

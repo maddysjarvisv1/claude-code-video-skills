@@ -4,7 +4,7 @@ Procedural reference for turning a **single sentence of direction** (Level 1) in
 
 Distilled from:
 - Binh ("Dad of 3 Monkeys"), *"Claude + Javascript = AMAZING 2D Cartoon Videos At Scale - My Workflow"* (HyperFrames + Claude + JS canvas/DOM, 3,708 frames / 123.6s rendered in 172s, $0 picture spend).
-- Our proven local builds: `[REDACTED_PATH]` (`48s / 1,152 frames @ 24fps`, blueprint style; measured `426.5s` capture/encode at `2.70 fps` + `56.0s` redundant mux re-encode) and `[REDACTED_PATH]` (`30s / 901 frames @ 30fps`, Whisper word-synced, `257s` at `3.51 fps`).
+- Our proven local builds: `<home>/hampi-malligi-blueprint` (`48s / 1,152 frames @ 24fps`, blueprint style; measured `426.5s` capture/encode at `2.70 fps` + `56.0s` redundant mux re-encode) and `<home>/malligi-reel` (`30s / 901 frames @ 30fps`, Whisper word-synced, `257s` at `3.51 fps`).
 
 ---
 
@@ -21,17 +21,17 @@ When the user supplies a **Level 1** one-line brief, **never jump from Level 1 o
 
 ## 2. Local Capability Matrix (What We Have vs What We Lack)
 
-- **Voiceover**: We do **not** have ElevenLabs installed or configured. Use local **Kokoro ONNX** (`env -u PYTHONPATH [REDACTED_PATH]`, voices `bm_george`, `af_heart`, etc.) or free Edge TTS (`text_to_speech`).
-- **Word Timings ("Computer listened back")**: Run local **`faster-whisper`** (`~/.hermes/cache/opt/whisper-venv/bin/python`, `base.en` with the PyAV `metadata_errors` shim, or `[REDACTED_PATH]`) over the generated TTS audio to emit `words.json` (`[{ "w": "...", "s": 1.24, "e": 1.58 }, ...]`).
-- **Music & Foley**: We do **not** have ElevenLabs music/SFX generation. Synthesize deterministic procedural score + material-accurate foley via Python (`[REDACTED_PATH]` + `make_audio.py`) locked to exact `EDL.json` visual cues (`cuecheck.py` `< 5 ms`), mixed to **`-14.0 LUFS`**.
-- **Visual Styles**: Choose from `[REDACTED_PATH]` (`[REDACTED_PATH]>/STYLE.md` — 43 styles including `urban-sketch` for wobbly ink + watercolor, `blueprint`, `ink-wash`, `ukiyoe`, `midcentury-toon`, `rubber-hose` — plus `[REDACTED_PATH]`). No external AI image generators (`$0` picture cost).
+- **Voiceover**: We do **not** have ElevenLabs installed or configured. Use local **Kokoro ONNX** (`env -u PYTHONPATH <home>/lemo-opuscar/.venv/bin/python`, voices `bm_george`, `af_heart`, etc.) or free Edge TTS (`text_to_speech`).
+- **Word Timings ("Computer listened back")**: Run local **`faster-whisper`** (`~/.hermes/cache/opt/whisper-venv/bin/python`, `base.en` with the PyAV `metadata_errors` shim, or `<home>/lemo-opuscar/.venv/bin/python`) over the generated TTS audio to emit `words.json` (`[{ "w": "...", "s": 1.24, "e": 1.58 }, ...]`).
+- **Music & Foley**: We do **not** have ElevenLabs music/SFX generation. Synthesize deterministic procedural score + material-accurate foley via Python (`<home>/lemo-opuscar/core/audio/sfx.py` + `make_audio.py`) locked to exact `EDL.json` visual cues (`cuecheck.py` `< 5 ms`), mixed to **`-14.0 LUFS`**.
+- **Visual Styles**: Choose from `<home>/SKILLS.md` (`<home>/lemo-skillsrc/styles/<slug>/STYLE.md` — 43 styles including `urban-sketch` for wobbly ink + watercolor, `blueprint`, `ink-wash`, `ukiyoe`, `midcentury-toon`, `rubber-hose` — plus `<home>/herk-edit-kit/MOTION_PHILOSOPHY.md`). No external AI image generators (`$0` picture cost).
 
 ---
 
 ## 3. Step-by-Step Execution Chain (`build/build.sh`)
 
 1. **Research & Style Lock (Level 1 → Level 2)**:
-   - Pick the matching `STYLE.md` from `[REDACTED_PATH]`.
+   - Pick the matching `STYLE.md` from `<home>/SKILLS.md`.
    - Verify all factual claims and numbers from real sources; log them in `EDL.json` (`factual_verification`).
    - Write `TREATMENT.md` (logline, 3-act arc, style tokens, "one real thing" / signature move).
 2. **Script & TTS Voice**:

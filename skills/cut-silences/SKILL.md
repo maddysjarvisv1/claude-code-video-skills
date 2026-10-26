@@ -3,10 +3,10 @@ name: cut-silences
 description: Agent 1 of the video editing pipeline. Removes silences and dead air from a talking-head recording. Use when asked to cut silences, trim pauses, remove dead air / gaps, or tighten the pacing of a raw video, given a word-level transcript. Produces an edit list (EDL), a re-timed transcript for downstream agents, and optionally the cut video via ffmpeg. Does NOT cut mistakes, repeats, or false starts — that is the cut-mistakes agent.
 ---
 
-> **LOCAL INSTALL (Hermes, [REDACTED_PHONE]).** Part of the Herk Edit Kit
-> (github.com/nateherkai/herk-edit-kit, MIT). The kit lives at **`[REDACTED_PATH]`** and its helper
+> **LOCAL INSTALL (Hermes, 2026-10-14).** Part of the Herk Edit Kit
+> (github.com/nateherkai/herk-edit-kit, MIT). The kit lives at **`<home>/herk-edit-kit`** and its helper
 > commands in this skill are **repo-relative** (`scripts/…`, `style-library/…`), so run them with that
-> repo as the working directory: `cd [REDACTED_PATH] && node scripts/…`.
+> repo as the working directory: `cd <home>/herk-edit-kit && node scripts/…`.
 > This kit's own `hyperframes`, `hyperframes-cli` and `hyperframes-registry` skills were deliberately
 > NOT installed — they collide with our live HyperFrames plugin skill set.
 > Brand note: the AIS brand assets in the repo (logo, brand tokens CSS, example content) are **not

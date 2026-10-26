@@ -160,7 +160,7 @@ async function postBatch(batch) {
     await fetch(`${posthogHost()}/batch/`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Connection: "close" },
-      body: JSON.stringify({ api_key: [REDACTED] batch }),
+      body: JSON.stringify({ api_key: POSTHOG_API_KEY, batch }),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
   } catch {

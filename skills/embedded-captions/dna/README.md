@@ -12,7 +12,7 @@ shallow presets — every render is already fitted to its footage.
 ## Category lock (deliveries field, enforced by the compilers)
 
 Every classic DNA's **home is Cinematic (column)** — that is where all ten were
-built and validated. (Standard/rail mode was retired [REDACTED_PHONE]; the verbatim-rail
+built and validated. (Standard/rail mode was retired 2026-06-12; the verbatim-rail
 need is served by the `anchor` theme. The old rail combos are archived outside
 this repo and are not distributed with the skill.)
 

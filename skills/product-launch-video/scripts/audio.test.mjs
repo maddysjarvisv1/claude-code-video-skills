@@ -160,7 +160,7 @@ test("a storyboard music mood still retrieves BGM (marker is exact, not fuzzy)",
 
 // ── fetch-sfx ────────────────────────────────────────────────────────────────
 // Regressions found while running the full product-launch workflow end to end
-// (linear.app site showcase, [REDACTED_PHONE]).
+// (linear.app site showcase, 2026-07-30).
 
 /** Runs the fetch-sfx subcommand. `neutralOut` is what the stub engine writes to --out. */
 function runFetchSfx({

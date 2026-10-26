@@ -110,8 +110,8 @@ the broken take.
   Tween only to opacity 1 (`fromTo(el, {y:14}, {y:0, opacity:1, ...}, wordStart)`).
 - **Never show a caption and a designed card carrying the same words.** Drop any caption group whose
   window falls inside a card's window.
-- **ASR breaks tokens.** Merge `plus/919/-453/-7933.` → `[REDACTED_PHONE]` and `ROI/in/FOTEC/.com` →
-  `roiinfotech.com` before rendering captions, or the phone number displays as `+91 [REDACTED_PHONE]`.
+- **ASR breaks tokens.** Merge `plus/919/-453/-7933.` → `+91 99453 79333` and `ROI/in/FOTEC/.com` →
+  `roiinfotech.com` before rendering captions, or the phone number displays as `+91 +9199453 79333`.
 - **`renders/` is gitignored; `variants/` is not** — add working-media paths to `.gitignore` before
   committing a video project.
 - Verify by **looking at frames**, not by lint: `ffmpeg -i out.mp4 -vf "fps=1/4,scale=300:-1,tile=4x3" sheet.jpg`

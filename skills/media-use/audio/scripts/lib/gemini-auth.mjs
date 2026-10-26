@@ -13,7 +13,7 @@ export function geminiConfigured() {
 
 export function geminiAuth({ run = spawnSync } = {}) {
   const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
-  if (key) return { headers: { "x-goog-api-key": key }, secret: [REDACTED] };
+  if (key) return { headers: { "x-goog-api-key": key }, secret: key };
   if (!geminiConfigured()) {
     throw new Error(
       "Gemini TTS needs GEMINI_API_KEY or GOOGLE_API_KEY, or service-account credentials (GOOGLE_APPLICATION_CREDENTIALS or GCS_CREDS)",
@@ -39,5 +39,5 @@ export function geminiAuth({ run = spawnSync } = {}) {
   }
   const headers = { Authorization: `Bearer ${data.token}` };
   if (data.project) headers["x-goog-user-project"] = data.project;
-  return { headers, secret: [REDACTED] };
+  return { headers, secret: data.token };
 }

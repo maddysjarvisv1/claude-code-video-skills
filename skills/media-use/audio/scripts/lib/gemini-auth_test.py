@@ -24,7 +24,7 @@ spec.loader.exec_module(auth)
 class AuthenticationTests(unittest.TestCase):
     def setUp(self):
         self.info = {"type": "service_account", "project_id": "account-project", "token_uri": "https://untrusted.invalid/token"}
-        self.credentials = Mock(token="[REDACTED]")
+        self.credentials = Mock(token="fixture-token")
         self.factory = Mock(return_value=self.credentials)
         self.request = Mock(return_value=object())
         transport = types.ModuleType("google.auth.transport.requests")

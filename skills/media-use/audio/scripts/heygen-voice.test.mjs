@@ -16,7 +16,7 @@ let calls;
 beforeEach(() => {
   dir = mkdtempSync(join(tmpdir(), "heygen-voice-"));
   delete process.env.HEYGEN_ACCESS_TOKEN;
-  process.env.HEYGEN_API_KEY = "[REDACTED]";
+  process.env.HEYGEN_API_KEY = "hg_test";
   calls = [];
 });
 
@@ -74,7 +74,7 @@ test("clone uploads base64 audio, polls until complete, prints the voice id", as
   assert.deepEqual(r, { code: 0, out: '{"voice_id":"vc1"}', err: "" });
   assert.deepEqual(sleeps, [2000]);
   const post = calls[0];
-  assert.equal(post.opts.headers["X-Api-Key"], "[REDACTED]");
+  assert.equal(post.opts.headers["X-Api-Key"], "hg_test");
   assert.deepEqual(JSON.parse(post.opts.body), {
     voice_name: "Me",
     audio: {
@@ -164,7 +164,7 @@ test("list skips a nameless voice and stops on a page token HeyGen repeats", asy
     "GET /voices?type=private&limit=100": [
       [200, { data: [{ voice_id: "n", name: null }], has_more: true, next_token: "t2" }],
     ],
-    "GET /voices?type=private&limit=100&token=[REDACTED]": [
+    "GET /voices?type=private&limit=100&token=t2": [
       [200, { data: [], has_more: true, next_token: "t2" }],
     ],
   });
@@ -201,17 +201,17 @@ test("list pages through private voices and returns prefix matches with created_
         },
       ],
     ],
-    "GET /voices?type=private&limit=100&token=[REDACTED]": [
+    "GET /voices?type=private&limit=100&token=t2": [
       [200, { data: [{ voice_id: "c", name: "desk-2" }], has_more: false }],
     ],
-    "GET /voices/a": [[200, { data: { voice_id: "a", created_at: [REDACTED_PHONE] } }]],
-    "GET /voices/c": [[200, { data: { voice_id: "c", created_at: [REDACTED_PHONE] } }]],
+    "GET /voices/a": [[200, { data: { voice_id: "a", created_at: 1700000000 } }]],
+    "GET /voices/c": [[200, { data: { voice_id: "c", created_at: 1700000100 } }]],
   });
   const r = await run(["list", "--prefix", "desk-"]);
   assert.equal(r.code, 0);
   assert.deepEqual(JSON.parse(r.out), [
-    { voice_id: "a", name: "desk-1", created_at: [REDACTED_PHONE] },
-    { voice_id: "c", name: "desk-2", created_at: [REDACTED_PHONE] },
+    { voice_id: "a", name: "desk-1", created_at: 1700000000 },
+    { voice_id: "c", name: "desk-2", created_at: 1700000100 },
   ]);
 });
 
@@ -225,7 +225,7 @@ test("list prints HeyGen's refusal verbatim and exits 1", async () => {
 });
 
 test("a host-injected HEYGEN_ACCESS_TOKEN is sent as Bearer", async () => {
-  process.env.HEYGEN_ACCESS_TOKEN = "[REDACTED]";
+  process.env.HEYGEN_ACCESS_TOKEN = "at_host";
   mockFetch({ "DELETE /voices/vc1": [[200, { data: {} }]] });
   await run(["delete", "vc1"]);
   assert.equal(calls[0].opts.headers.Authorization, "Bearer at_host");

@@ -22,13 +22,13 @@ function env(t) {
 
 test("API keys take precedence over service accounts without invoking Python", (t) => {
   env(t);
-  process.env.GEMINI_API_KEY = "[REDACTED]";
-  process.env.GOOGLE_API_KEY = "[REDACTED]";
+  process.env.GEMINI_API_KEY = "gemini-key";
+  process.env.GOOGLE_API_KEY = "google-key";
   process.env.GCS_CREDS = "private-json";
   const run = () => assert.fail("must not spawn Python");
-  assert.deepEqual(geminiAuth({ run }).headers, { "x-goog-api-key": "[REDACTED]" });
+  assert.deepEqual(geminiAuth({ run }).headers, { "x-goog-api-key": "gemini-key" });
   delete process.env.GEMINI_API_KEY;
-  assert.deepEqual(geminiAuth({ run }).headers, { "x-goog-api-key": "[REDACTED]" });
+  assert.deepEqual(geminiAuth({ run }).headers, { "x-goog-api-key": "google-key" });
 });
 
 test("service-account configuration selects Gemini and returns scoped helper headers", (t) => {
@@ -45,12 +45,12 @@ test("service-account configuration selects Gemini and returns scoped helper hea
         assert.equal(options.timeout, 60000);
         return {
           status: 0,
-          stdout: JSON.stringify({ token: "[REDACTED]", project: "quota-project" }),
+          stdout: JSON.stringify({ token: "access-token", project: "quota-project" }),
         };
       },
     });
     assert.deepEqual(auth.headers, {
-      Authorization: "Bearer [REDACTED]",
+      Authorization: "Bearer access-token",
       "x-goog-user-project": "quota-project",
     });
     delete process.env[key];

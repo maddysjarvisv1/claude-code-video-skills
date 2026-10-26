@@ -19,7 +19,7 @@ At a `break` boundary between scene _i_ (`from`) and scene _i+1_ (`to`), the
 injector:
 
 1. Extends `#el-<from>` wrapper `data-duration` by `duration_s` (holds its final
-   frame — verified: `core/src/runtime/init.ts:[REDACTED_PHONE]` external-slot branch).
+   frame — verified: `core/src/runtime/init.ts:1393-1410` external-slot branch).
 2. Pulls `#el-<to>` wrapper `data-start` earlier by `duration_s` (creates the
    overlap window).
 3. Reassigns **all** clip `data-track-index` as a 0/1 ping-pong so the two
@@ -28,7 +28,7 @@ injector:
    `core/src/lint/rules/composition.ts`). Higher track composites on top.
 4. Stamps the `gsap_template` into `window.__timelines["main"]` at `T = overlap-start`.
 
-Verified by prototype render ([REDACTED_PHONE]): the master-timeline wrapper tween is
+Verified by prototype render (2026-05-31): the master-timeline wrapper tween is
 seeked and rendered (no double-seek with the sub-comp's own paused timeline —
 the runtime drives them independently), the extended wrapper holds scene _i_'s
 final frame, and the higher-track incoming wrapper composites over + blends with

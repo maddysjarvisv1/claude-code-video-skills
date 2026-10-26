@@ -237,7 +237,7 @@ function mulberry32(seed) {
     seed = (seed + 0x6d2b79f5) | 0;
     var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
     t ^= t + Math.imul(t ^ (t >>> 7), 61 | t);
-    return ((t ^ (t >>> 14)) >>> 0) / [REDACTED_PHONE];
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
 var rng = mulberry32(42);

@@ -28,7 +28,7 @@ Four signature patterns:
 
 ```html
 <!-- inside a standard scene clip — named children are the animation targets -->
-<svg class="icon-svg" viewBox="[REDACTED_PHONE]" xmlns="http://www.w3.org/2000/svg">
+<svg class="icon-svg" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
   <circle cx="60" cy="60" r="50" fill="none" stroke="{accentColor}" stroke-width="6" />
   <line
     id="hand-min"

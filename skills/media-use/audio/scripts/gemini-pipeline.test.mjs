@@ -24,7 +24,7 @@ for (const expired of [false, true]) {
         writeFileSync(
           join(config, "credentials"),
           JSON.stringify({
-            oauth: { access_token: "[REDACTED]", expires_at: "[REDACTED_PHONE]T00:00:00Z" },
+            oauth: { access_token: "expired-fixture", expires_at: "2000-01-01T00:00:00Z" },
           }),
         );
       const bin = join(dir, "bin");

@@ -31,7 +31,7 @@ export async function synthesizeGemini(
       );
     }
     const auth = authenticate();
-    secret = [REDACTED]
+    secret = auth.secret;
     const content = {
       type: "text",
       text:

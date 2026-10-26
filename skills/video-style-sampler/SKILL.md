@@ -41,7 +41,7 @@ Never let a version bump masquerade as a style change.
 
 - One fixed script with exact spoken lines, identical across every style.
 - ONE shared VO generated once (local Kokoro ONNX:
-  `env -u PYTHONPATH [REDACTED_PATH]`) and muxed into every clip. Generating audio
+  `env -u PYTHONPATH <home>/lemo-opuscar/.venv/bin/python`) and muxed into every clip. Generating audio
   per-style introduces timing drift and length mismatch that makes clips incomparable.
 - ONE shared caption word-timing (`faster-whisper base.en word_timestamps=True`); each style draws its
   own caption idiom from the SAME timings.
@@ -57,7 +57,7 @@ Never let a version bump masquerade as a style change.
   the sound off.
 - Always include the current/baseline style as a labelled CONTROL so the real delta reads clearly.
 - Read each style's source of truth before drawing it (motion-graphics 5-name menu,
-  `[REDACTED_PATH]>/STYLE.md`, `[REDACTED_PATH]>/DESIGN.md` +
+  `<home>/lemo-skillsrc/styles/<slug>/STYLE.md`, `<home>/herk-edit-kit/style-library/<id>/DESIGN.md` +
   `tokens.css`); do not blend tokens between styles -- distinctness is the whole point.
 
 ## Step 3: Self-label every clip
@@ -103,10 +103,10 @@ filename and byte size before telling the owner it is posted.
 - **lemo style `demo/fonts/` dirs ship ONLY `fonts.css` + `OFL.txt`; the actual `.ttf/.woff2` are absent**
   (font files are unvendored). If a build relies on a lemo style's faces (e.g. `ArchitectsDaughter`,
   `B612`, `Allura`), fetch/install them or substitute the nearest local face and RECORD the substitution
-  in the build report. `[REDACTED_PATH]` are decorative per-script faces, NOT general
+  in the build report. `<home>/lemo-skillsrc/core/fonts/f0-f7` are decorative per-script faces, NOT general
   latin webfonts.
 - **The hyperframes CLI is not on PATH.** Either run `npx hyperframes render ...` from the project dir,
-  or `export PATH=[REDACTED_PATH]>/node_modules/.bin:$PATH` then
+  or `export PATH=<home>/.npm/_npx/<pkg-hash>/node_modules/.bin:$PATH` then
   `hyperframes render scenes/<slug> --output renders/style-0X-<slug>.mp4 --fps 30 -q high`. Composition
   contract per scene dir: `index.html` + `hyperframes.json`
   `{name, entry, width:1080, height:1920, fps:30, duration:12.0}`.

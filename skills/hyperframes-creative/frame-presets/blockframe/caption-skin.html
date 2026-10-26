@@ -93,7 +93,7 @@
   .caption-word {
     display: inline-block;
     padding: 0 0.1em;
-    color: color-mix(in srgb, var(--cap-ink, #[REDACTED_PHONE]%, var(--cap-canvas, #ffffff));
+    color: color-mix(in srgb, var(--cap-ink, #000000) 40%, var(--cap-canvas, #ffffff));
   }
   /* current word — THE yellow stamp-block (box-shadow spread = a hard square block
      w/o layout shift; no blur), black ink reading on top — blockframe's signature stamp */
@@ -117,7 +117,7 @@
   /* numerals / data — the body voice, slightly recessed */
   .caption-word.cap-num {
     font-family: var(--font-body, "Inter"), ui-monospace, monospace;
-    color: color-mix(in srgb, var(--cap-ink, #[REDACTED_PHONE]%, var(--cap-canvas, #ffffff));
+    color: color-mix(in srgb, var(--cap-ink, #000000) 74%, var(--cap-canvas, #ffffff));
   }
   /* emphasis — a cream hard underline bar (the second-chroma accent) */
   .caption-word.cap-cta {

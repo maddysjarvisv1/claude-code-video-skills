@@ -28,7 +28,7 @@
     "fontPx": 138,
     "params": {
       "seed": 8088,
-      "glyphs": "ABCDEFGHIKLMNOPRSTUVXYZ[REDACTED_PHONE]",
+      "glyphs": "ABCDEFGHIKLMNOPRSTUVXYZ0123456789",
       "lockWindow": 0.34,
       "gap": 7,
       "headerLeft": "★ DEPARTURES",

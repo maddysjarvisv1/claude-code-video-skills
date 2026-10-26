@@ -46,7 +46,7 @@ Each character gets its own per-char tween from `rotateX: 90deg` (hidden, hinged
 ```js
 const wrap = document.getElementById("hacker-text");
 const targetWord = wrap.dataset.target;
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ[REDACTED_PHONE]!@#$%&*";
+const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%&*";
 
 // Ghost row (reserves width) + live per-char spans
 const ghost = document.createElement("div");

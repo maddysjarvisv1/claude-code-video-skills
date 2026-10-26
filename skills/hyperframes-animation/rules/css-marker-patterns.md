@@ -117,7 +117,7 @@ Wavy SVG underline that draws itself via `stroke-dashoffset`.
 ```html
 <span class="mh-scribble-wrap">
   <span class="mh-scribble-text">underlined text</span>
-  <svg class="mh-scribble-svg" viewBox="[REDACTED_PHONE]" preserveAspectRatio="none">
+  <svg class="mh-scribble-svg" viewBox="0 0 500 24" preserveAspectRatio="none">
     <path
       id="scribble-1"
       d="M0,12 Q31,0 62,12 Q93,24 125,12 Q156,0 187,12 Q218,24 250,12 Q281,0 312,12 Q343,24 375,12 Q406,0 437,12 Q468,24 500,12"

@@ -355,7 +355,7 @@
               <!-- Inline-SVG placeholder mark — swap for your logo image -->
               <svg
                 class="logo-mark"
-                viewBox="[REDACTED_PHONE]"
+                viewBox="0 0 100 100"
                 width="100%"
                 height="100%"
                 role="img"
@@ -631,13 +631,13 @@
 
       // Hacker-flip per glyph. Each glyph has its own tween with onUpdate
       // that derives the visible character from time.
-      const CHAR_POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ[REDACTED_PHONE]@#$%&";
+      const CHAR_POOL = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
       const FLICKER = 3; // frames between glyph reshuffles
       const REVEAL_AT = 0.6; // progress threshold to swap random → real
 
       function pseudoHash(i, t) {
         // Cheap deterministic 32-bit mix — no Math.random, no Date.now
-        return ((i * [REDACTED_PHONE] + t * [REDACTED_PHONE]) >>> 0) % CHAR_POOL.length;
+        return ((i * 374761393 + t * 668265263) >>> 0) % CHAR_POOL.length;
       }
 
       document.querySelectorAll(".flip-glyph").forEach((glyph) => {

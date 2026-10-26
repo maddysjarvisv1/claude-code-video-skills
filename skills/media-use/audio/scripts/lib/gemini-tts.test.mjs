@@ -9,7 +9,7 @@ import { pickProvider, resolveVoiceId, synthesizeOne } from "./tts.mjs";
 function fixture(t) {
   const dir = mkdtempSync(join(tmpdir(), "gemini-tts-"));
   const saved = { ...process.env };
-  process.env.GEMINI_API_KEY = "[REDACTED]";
+  process.env.GEMINI_API_KEY = "test-gemini-key";
   delete process.env.GOOGLE_API_KEY;
   delete process.env.GOOGLE_APPLICATION_CREDENTIALS;
   delete process.env.GCS_CREDS;
@@ -67,7 +67,7 @@ test("Gemini preserves verbatim text, directs style separately, saves WAV and re
 test("Flash-Lite and GOOGLE_API_KEY work without a Gemini key", async (t) => {
   const { payload, args } = fixture(t);
   delete process.env.GEMINI_API_KEY;
-  process.env.GOOGLE_API_KEY = "[REDACTED]";
+  process.env.GOOGLE_API_KEY = "test-google-key";
   assert.equal(pickProvider("gemini"), "gemini");
   assert.equal(await resolveVoiceId({ provider: "gemini" }), "Kore");
   const result = await synthesizeGemini(
@@ -188,13 +188,13 @@ for (const model of [
 test("service-account bearer and quota project reach synthesis, and token errors are redacted", async (t) => {
   const { args, payload } = fixture(t);
   const authenticate = () => ({
-    headers: { Authorization: "Bearer [REDACTED]", "x-goog-user-project": "test-project" },
-    secret: "[REDACTED]",
+    headers: { Authorization: "Bearer secret-token", "x-goog-user-project": "test-project" },
+    secret: "secret-token",
   });
   const ok = await synthesizeGemini(args, {
     authenticate,
     fetchImpl: async (_, options) => {
-      assert.equal(options.headers.Authorization, "Bearer [REDACTED]");
+      assert.equal(options.headers.Authorization, "Bearer secret-token");
       assert.equal(options.headers["x-goog-user-project"], "test-project");
       assert.equal(options.headers["x-goog-api-key"], undefined);
       return Response.json(payload);
@@ -206,7 +206,7 @@ test("service-account bearer and quota project reach synthesis, and token errors
     fetchImpl: async () => new Response("denied secret-token", { status: 403 }),
   });
   assert.match(failed.error, /HTTP 403/);
-  assert.ok(!failed.error.includes("[REDACTED]"));
+  assert.ok(!failed.error.includes("secret-token"));
 });
 
 test("older models reject unsupported PCM and custom voices", async (t) => {

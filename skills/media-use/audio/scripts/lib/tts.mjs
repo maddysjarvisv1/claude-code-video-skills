@@ -233,7 +233,7 @@ const ELEVENLABS_PY = `
 import os, sys
 from elevenlabs.client import ElevenLabs
 from elevenlabs import save
-client = ElevenLabs(api_key=[REDACTED]"ELEVENLABS_API_KEY"])
+client = ElevenLabs(api_key=os.environ["ELEVENLABS_API_KEY"])
 text = open(sys.argv[1]).read()
 audio = client.text_to_speech.convert(
     text=text, voice_id=sys.argv[2],

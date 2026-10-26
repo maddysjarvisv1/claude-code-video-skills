@@ -6,7 +6,7 @@
  * an onnxruntime inference loop in this script): one engine, zero bundled
  * weights — the model auto-downloads once (~168 MB) to ~/.cache/hyperframes/.
  *
- * Semantics note (validated [REDACTED_PHONE] on 6 scenes + a cold-start E2E): a
+ * Semantics note (validated 2026-06-12 on 6 scenes + a cold-start E2E): a
  * HUMAN segmenter by intent, not surgically. Thin offset furniture (mic boom
  * arms) is usually excluded — captions render over it, behind the person —
  * but large salient objects near the subject (a telescope rig) can still

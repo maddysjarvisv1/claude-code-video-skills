@@ -65,7 +65,7 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      const DIGITS = "[REDACTED_PHONE]";
+      const DIGITS = "0123456789";
       const slotStates = [{ p: 0 }, { p: 0 }, { p: 0 }, { p: 0 }];
       slotStates.forEach((state, idx) => {
         tl.to(

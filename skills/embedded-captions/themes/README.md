@@ -17,7 +17,7 @@ theme DNA = body PARADIGM   how the transcript surface lives
 ```
 
 Standard and Cinematic were, in retrospect, two fixed points of this space.
-Standard is now RETIRED ([REDACTED_PHONE]): its rail×embed-climax point is served by
+Standard is now RETIRED (2026-06-12): its rail×embed-climax point is served by
 the `anchor` theme (rail paradigm × settle setpiece — the quiet default).
 Cinematic remains a separate compiler; do not re-implement it as a theme yet.
 

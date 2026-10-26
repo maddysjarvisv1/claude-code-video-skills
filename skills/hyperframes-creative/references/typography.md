@@ -109,21 +109,21 @@ R = OrderedDict()
 R["Trending Sans"] = []
 for f in fonts:
     if not ok(f) or f["family"] in seen: continue
-    if f.get("category") in ("Sans Serif","Display") and f.get("dateAdded","") >= "[REDACTED_PHONE]" and f.get("popularity",9999) < 300:
+    if f.get("category") in ("Sans Serif","Display") and f.get("dateAdded","") >= "2022-01-01" and f.get("popularity",9999) < 300:
         R["Trending Sans"].append(f); seen.add(f["family"])
 
 # Trending Serif — recent (2018+), popular (<600)
 R["Trending Serif"] = []
 for f in fonts:
     if not ok(f) or f["family"] in seen: continue
-    if f.get("category") == "Serif" and f.get("dateAdded","") >= "[REDACTED_PHONE]" and f.get("popularity",9999) < 600:
+    if f.get("category") == "Serif" and f.get("dateAdded","") >= "2018-01-01" and f.get("popularity",9999) < 600:
         R["Trending Serif"].append(f); seen.add(f["family"])
 
 # Monospace — recent (2018+), popular (<600)
 R["Monospace"] = []
 for f in fonts:
     if not ok(f) or f["family"] in seen: continue
-    if f.get("category") == "Monospace" and f.get("dateAdded","") >= "[REDACTED_PHONE]" and f.get("popularity",9999) < 600:
+    if f.get("category") == "Monospace" and f.get("dateAdded","") >= "2018-01-01" and f.get("popularity",9999) < 600:
         R["Monospace"].append(f); seen.add(f["family"])
 
 # Impact & Condensed — heavy display fonts with 800+ weight

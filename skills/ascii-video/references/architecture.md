@@ -147,7 +147,7 @@ for pal in [PAL_DEFAULT, PAL_DENSE, PAL_BLOCKS, PAL_RUNE, PAL_KATA,
             PAL_CIRCUIT, PAL_ARROWS, PAL_HERMES]:  # ... all palettes used in project
     all_chars.update(pal)
 # Add any overlay text characters
-all_chars.update("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz[REDACTED_PHONE] .,-:;!?/|")
+all_chars.update("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,-:;!?/|")
 all_chars.discard(" ")  # space is never rendered
 ```
 
@@ -454,24 +454,24 @@ def linear_to_srgb(c):
 def linear_rgb_to_oklab(r, g, b):
     """Linear sRGB to OKLAB. r,g,b: float32 arrays [0,1].
     Returns (L, a, b) where L=[0,1], a,b=[-0.4, 0.4] approx."""
-    l_ = 0.[REDACTED_PHONE] * r + 0.[REDACTED_PHONE] * g + 0.[REDACTED_PHONE] * b
-    m_ = 0.[REDACTED_PHONE] * r + 0.[REDACTED_PHONE] * g + 0.[REDACTED_PHONE] * b
-    s_ = 0.[REDACTED_PHONE] * r + 0.[REDACTED_PHONE] * g + 0.[REDACTED_PHONE] * b
+    l_ = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b
+    m_ = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b
+    s_ = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b
     l_c = np.cbrt(l_); m_c = np.cbrt(m_); s_c = np.cbrt(s_)
-    L = 0.[REDACTED_PHONE] * l_c + 0.[REDACTED_PHONE] * m_c - 0.[REDACTED_PHONE] * s_c
-    a = 1.[REDACTED_PHONE] * l_c - 2.[REDACTED_PHONE] * m_c + 0.[REDACTED_PHONE] * s_c
-    b_ = 0.[REDACTED_PHONE] * l_c + 0.[REDACTED_PHONE] * m_c - 0.[REDACTED_PHONE] * s_c
+    L = 0.2104542553 * l_c + 0.7936177850 * m_c - 0.0040720468 * s_c
+    a = 1.9779984951 * l_c - 2.4285922050 * m_c + 0.4505937099 * s_c
+    b_ = 0.0259040371 * l_c + 0.7827717662 * m_c - 0.8086757660 * s_c
     return L, a, b_
 
 def oklab_to_linear_rgb(L, a, b):
     """OKLAB to linear sRGB. Returns (r, g, b) float32 arrays [0,1]."""
-    l_ = L + 0.[REDACTED_PHONE] * a + 0.[REDACTED_PHONE] * b
-    m_ = L - 0.[REDACTED_PHONE] * a - 0.[REDACTED_PHONE] * b
-    s_ = L - 0.[REDACTED_PHONE] * a - 1.[REDACTED_PHONE] * b
+    l_ = L + 0.3963377774 * a + 0.2158037573 * b
+    m_ = L - 0.1055613458 * a - 0.0638541728 * b
+    s_ = L - 0.0894841775 * a - 1.2914855480 * b
     l_c = l_ ** 3; m_c = m_ ** 3; s_c = s_ ** 3
-    r = +4.[REDACTED_PHONE] * l_c - 3.[REDACTED_PHONE] * m_c + 0.[REDACTED_PHONE] * s_c
-    g = -1.[REDACTED_PHONE] * l_c + 2.[REDACTED_PHONE] * m_c - 0.[REDACTED_PHONE] * s_c
-    b_ = -0.[REDACTED_PHONE] * l_c - 0.[REDACTED_PHONE] * m_c + 1.[REDACTED_PHONE] * s_c
+    r = +4.0767416621 * l_c - 3.3077115913 * m_c + 0.2309699292 * s_c
+    g = -1.2684380046 * l_c + 2.6097574011 * m_c - 0.3413193965 * s_c
+    b_ = -0.0041960863 * l_c - 0.7034186147 * m_c + 1.7076147010 * s_c
     return np.clip(r, 0, 1), np.clip(g, 0, 1), np.clip(b_, 0, 1)
 
 # --- Convenience: sRGB uint8 <-> OKLAB ---

@@ -61,7 +61,7 @@ test("falls back to the canonical name (loud failure, unchanged) when nothing ru
 // Regression (#4614): on PEP 668 systems the documented setup is a venv named
 // by HYPERFRAMES_PYTHON; the audio engine ignored it and probed the bare
 // system python3, so MusicGen BGM was skipped while `doctor` said installed.
-const VENV = "[REDACTED_PATH]";
+const VENV = "<home>/.venvs/hf/bin/python";
 
 test("HYPERFRAMES_PYTHON wins over python3 on PATH when it runs", () => {
   const env = { HYPERFRAMES_PYTHON: VENV };

@@ -30,7 +30,7 @@
           #17211f 30%,
           #0b2328 48%,
           #1f3518 70%,
-          #[REDACTED_PHONE]%
+          #343434 100%
         );
         --text-dark: #f8fafc;
         --text-highlight: #18d9e8;
@@ -355,7 +355,7 @@
 
         // Deterministic 32-bit mix — replaces Math.random / seeded RNG.
         function pseudoHash(i, t) {
-          return ((i * [REDACTED_PHONE] + t * [REDACTED_PHONE]) >>> 0) % CHAR_POOL.length;
+          return ((i * 374761393 + t * 668265263) >>> 0) % CHAR_POOL.length;
         }
 
         document.querySelectorAll(".flip-glyph").forEach((glyph) => {

@@ -434,7 +434,7 @@ if (!heroInline && !HEROLESS) {
     HG.matH = Math.round(fpx * 1.846);
     HG.halfW = HG.matW / 2;
   } else if (dna.hero.setpiece === "centerfold") {
-    // pop-up book centerfold (demo: Baloo [REDACTED_PHONE]px STARS over a 12-point
+    // pop-up book centerfold (demo: Baloo 2 800 120px STARS over a 12-point
     // paper starburst, outer R 220 ≈ 0.59×wordW, box 620×560 = 2R+180 × 2R+fontPx):
     // the bursts, blob shadow, struts and the confetti hinge all derive from
     // the word rect; width-fit shrinks the type, the burst follows the word
@@ -519,7 +519,7 @@ if (!heroInline && !HEROLESS) {
 }
 
 // ---------- shared emit helpers ----------
-const MULBERRY = `function mulberry32(a){return function(){a|=0;a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/[REDACTED_PHONE];}}`;
+const MULBERRY = `function mulberry32(a){return function(){a|=0;a=(a+0x6D2B79F5)|0;let t=Math.imul(a^(a>>>15),1|a);t=(t+Math.imul(t^(t>>>7),61|t))^t;return((t^(t>>>14))>>>0)/4294967296;}}`;
 
 // bundled @font-face subset for this DNA's families — the renderer only
 // auto-supplies its canonical fonts; anything else silently falls back unless
@@ -1271,7 +1271,7 @@ function setpieceDrawon() {
   #pen  { filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 22px ${dna.palette.accent}); }`;
   const html = `      <div id="spill"></div>
       <div id="sign">
-        <svg id="neonsvg" width="760" height="300" viewBox="[REDACTED_PHONE]">
+        <svg id="neonsvg" width="760" height="300" viewBox="0 0 760 300">
           <defs><filter id="haloblur" x="-60%" y="-60%" width="220%" height="220%">
             <feGaussianBlur stdDeviation="10"/></filter></defs>
           <path id="tubeP" fill="none" stroke="rgba(255,235,245,0.16)" stroke-width="${p.tubeWidth + 1}"
@@ -1422,7 +1422,7 @@ function frontFx() {
   if (fx.paflash) {
     // PA-system flash over the board glow at apex contact (ledwipe completes)
     const C2 = I + ((dna.hero.params || {}).wipeDur || 0.3);
-    const pw = (HG.panelW || [REDACTED_PHONE],
+    const pw = (HG.panelW || 900) - 180,
       ph = Math.round((HG.panelH || 232) * 1.9);
     css += `
   #fxpa { position:absolute; left:${Math.round(HG.x - pw / 2)}px; top:${Math.round(HG.y - ph / 2)}px;
@@ -1775,7 +1775,7 @@ function paradigmLastpage() {
       a = (a + 0x6d2b79f5) | 0;
       let t = Math.imul(a ^ (a >>> 15), 1 | a);
       t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / [REDACTED_PHONE];
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
   })();
   // field instances: seeded positions in the upper room, away from the subject column
@@ -1901,7 +1901,7 @@ function paradigmFlaprail() {
   #ctrbox { display:inline-block; width:54px; height:46px; perspective:260px; vertical-align:top; }
   #ctrflap { position:relative; display:block; width:100%; height:100%; transform-origin:50% 0%;
              backface-visibility:hidden; border-radius:3px;
-             background: linear-gradient(180deg,#2E333B 0%,#262B32 48%,#1B1F25 52%,#[REDACTED_PHONE]%);
+             background: linear-gradient(180deg,#2E333B 0%,#262B32 48%,#1B1F25 52%,#242930 100%);
              box-shadow: inset 0 0 0 1px rgba(0,0,0,0.6), 0 2px 5px rgba(0,0,0,0.5); }
   #ctrflap .nv { position:absolute; inset:0; display:none; text-align:center;
                  font-family:'${dna.fonts.tag}', sans-serif; font-weight:600; font-size:36px;
@@ -1962,7 +1962,7 @@ ${
   // ---- body paradigm: FLAPRAIL (split-flap word tiles on a chyron bar) ----
   const HOT = ${J(dna.palette.hot || dna.palette.accent)}, BONE = ${J(dna.palette.body)};
   const frnd2 = mulberry32(${b.seed || 808});
-  const GLYPHS = ${J(dna.body.glyphs || "ABCDEFGHIKLMNOPRSTUVXYZ[REDACTED_PHONE]")};
+  const GLYPHS = ${J(dna.body.glyphs || "ABCDEFGHIKLMNOPRSTUVXYZ0123456789")};
   function wrongOf(txt) {
     let s = "";
     for (const c of txt) s += /[A-Z']/.test(c) ? GLYPHS[Math.floor(frnd2() * GLYPHS.length)] : c;
@@ -2752,7 +2752,7 @@ ${pageData
         });
         if (em) {
           const svg = document.createElementNS(NS, "svg");
-          svg.setAttribute("class", "circ"); svg.setAttribute("viewBox", "[REDACTED_PHONE]");
+          svg.setAttribute("class", "circ"); svg.setAttribute("viewBox", "0 0 120 64");
           svg.setAttribute("preserveAspectRatio", "none");
           const el = document.createElementNS(NS, "ellipse");
           el.setAttribute("cx", 60); el.setAttribute("cy", 32);
@@ -4325,7 +4325,7 @@ ${lineData.map((L) => `        <div class="crow" id="${L.id}" style="top:${L.top
       // emphasis: double underline dashes drawn beneath
       if (em) {
         const svg = document.createElementNS(SVGNS, "svg");
-        svg.setAttribute("class", "ul"); svg.setAttribute("viewBox", "[REDACTED_PHONE]");
+        svg.setAttribute("class", "ul"); svg.setAttribute("viewBox", "0 0 100 18");
         svg.setAttribute("preserveAspectRatio", "none");
         const col = yel ? ${J(dna.palette.em || "#f3d96b")} : ${J(dna.palette.body)};
         [["M 3 5 C 28 2, 66 8, 97 4", Math.min(st + 0.22, ${(DUR - 0.3).toFixed(3)}), 0.12],
@@ -4437,7 +4437,7 @@ function paradigmMarkerrail() {
     // spray underline swoosh: dash-revealed squiggle + seeded overspray dots
     const svg = document.createElementNS(SVGNSM, "svg");
     svg.setAttribute("class", "muline");
-    svg.setAttribute("viewBox", "[REDACTED_PHONE]");
+    svg.setAttribute("viewBox", "0 0 120 26");
     svg.setAttribute("preserveAspectRatio", "none");
     const path = document.createElementNS(SVGNSM, "path");
     path.setAttribute("d", "M 5 13 C 28 20, 52 6, 78 12 S 108 16, 115 10");
@@ -4632,7 +4632,7 @@ ${lineData.map((L) => `        <div class="bline" id="${L.id}"></div>`).join("\n
       wrap.appendChild(tx); wrap.appendChild(bh); cell.appendChild(wrap);
       if (em) {                                        // double curved ink underline
         const svg = document.createElementNS(SVGNSB, "svg");
-        svg.setAttribute("class", "ul"); svg.setAttribute("viewBox", "[REDACTED_PHONE]");
+        svg.setAttribute("class", "ul"); svg.setAttribute("viewBox", "0 0 100 14");
         svg.setAttribute("preserveAspectRatio", "none");
         const mkp = (d, w, op) => {
           const p = document.createElementNS(SVGNSB, "path");
@@ -5023,7 +5023,7 @@ function setpieceCpslam() {
       a = (a + 0x6d2b79f5) | 0;
       let t = Math.imul(a ^ (a >>> 15), 1 | a);
       t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-      return ((t ^ (t >>> 14)) >>> 0) / [REDACTED_PHONE];
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
   })();
   const DISP = heroText.toUpperCase(),
@@ -5196,7 +5196,7 @@ function setpieceFlapboard() {
                         rgba(255,160,60,0.16) 55%, rgba(0,0,0,0) 78%); }
   #persp { position:absolute; inset:0; perspective:950px; }
   #board { position:absolute; left:${HG.x}px; top:${HG.y}px; opacity:0; transform-origin:50% 0%;
-           background: linear-gradient(180deg,#171B21 0%,#[REDACTED_PHONE]%);
+           background: linear-gradient(180deg,#171B21 0%,#101319 100%);
            border-radius:8px; border:1px solid #353C47; border-top:3px solid ${dna.palette.hot};
            padding:10px 20px 18px;
            box-shadow: 0 18px 60px rgba(0,0,0,0.65), inset 0 1px 0 rgba(255,255,255,0.06); }
@@ -5210,7 +5210,7 @@ function setpieceFlapboard() {
            box-shadow: inset 0 0 0 1px #1F242B, inset 0 5px 12px rgba(0,0,0,0.75); }
   .aflap { position:absolute; inset:0; transform-origin:50% 0%; backface-visibility:hidden;
            border-radius:4px; text-align:center;
-           background: linear-gradient(180deg,#343A43 0%,#272C34 48%,#1A1E25 52%,#[REDACTED_PHONE]%);
+           background: linear-gradient(180deg,#343A43 0%,#272C34 48%,#1A1E25 52%,#242931 100%);
            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.08);
            font-family:'${dna.fonts.hero}', sans-serif; font-size:${fpx}px; line-height:${tileH + 2}px;
            color:${dna.palette.boardBone || dna.palette.body};
@@ -5239,7 +5239,7 @@ function setpieceFlapboard() {
   const js = `
   // ---- setpiece: FLAPBOARD (housing clack → flip-cycle → lock left→right → board life) ----
   const I = ${I.toFixed(3)}, AIN = ${AIN.toFixed(3)}, LOCK0 = I, LSTEP = ${(lockWin / Math.max(1, N - 1)).toFixed(5)};
-  const WORDB = ${J(heroText)}, BGLYPHS = ${J(p.glyphs || "ABCDEFGHIKLMNOPRSTUVXYZ[REDACTED_PHONE]")};
+  const WORDB = ${J(heroText)}, BGLYPHS = ${J(p.glyphs || "ABCDEFGHIKLMNOPRSTUVXYZ0123456789")};
   const HOTB = ${J(dna.palette.hot)}, BONEB = ${J(dna.palette.boardBone || dna.palette.body)};
   const brnd = mulberry32(${p.seed || 8088});
   // scene reaction: floodlights swing onto the board

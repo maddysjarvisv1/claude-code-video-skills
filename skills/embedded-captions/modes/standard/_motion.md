@@ -182,7 +182,7 @@ Default is **fade** unless a template names another. **Every exit ends at `opaci
 - **knock** — `to{opacity:0,xPercent:55,filter:'blur(9px)'}` · **peel** — `to{opacity:0,rotation:14,xPercent:42,scale:.9}` · **spin-out** — `to{opacity:0,rotation:180,scale:.3}`
 - **hop** — `keyframes:{yPercent:[0,-26,120],opacity:[1,1,0]},scaleY:.7` · **popout** — `to{opacity:0,scale:.3,rotation:-10}` · **slidedown** — `to{opacity:0,yPercent:42}` · **scrawl-off** — `to{opacity:0,yPercent:-14,rotation:2}`
 - **vhs-out** — `keyframes:{x:[0,-9,8,0],opacity:[1,1,0]},scaleY:.2` (tracking-lost roll) · **blink-out** — `keyframes:{opacity:[1,0,1,0,1,0,0]},ease:'steps(1)'` · **power-down** — `keyframes:{opacity:[1,.2,.7,.1,0]},ease:'steps(2)'` · **lift2** — `to{opacity:0,scale:1.12,filter:'blur(3px)'}` (stamp lift) · **shim-out** — `to{opacity:0,scale:.8,filter:'brightness(1.9)'}`
-- **iris-close** — `to{opacity:0,clipPath:'circle(0% at 50% 46%)'}` (Bond) · **un-shine** — `to{opacity:0,clipPath:'inset([REDACTED_PHONE]%)',filter:'brightness(1.7)'}` · **sweep-off** — `to{opacity:1,clipPath:'inset(0 100% 0 0)'}`
+- **iris-close** — `to{opacity:0,clipPath:'circle(0% at 50% 46%)'}` (Bond) · **un-shine** — `to{opacity:0,clipPath:'inset(0 0 0 100%)',filter:'brightness(1.7)'}` · **sweep-off** — `to{opacity:1,clipPath:'inset(0 100% 0 0)'}`
 - ultra family exits: **glitch-out**, **neon-out**, **hyper-out** `to{opacity:0,scale:2.6,filter:'blur(13px)'}`, **liquid-out** `to{opacity:0,yPercent:40,scale:.96,filter:'blur(9px)'}`, **prism-out** (channels split apart), **shatter-out** `to{opacity:0,scale:1.45,filter:'blur(9px)',textShadow:'7px 0 #ff003c,-7px 0 #00ffd1'}`
 
 ## Pairs with HF skills

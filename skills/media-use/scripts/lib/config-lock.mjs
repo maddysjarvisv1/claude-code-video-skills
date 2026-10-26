@@ -1,7 +1,7 @@
 // The one lock on ~/.hyperframes/config.json, for the CLI, its auto-update step and media-use. The auto-update step
 // embeds this function's source, so it must use only its arguments and globals.
 export function withFileLock(lockPath, fs, task) {
-  const token = [REDACTED]
+  const token = `${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2)}`;
   const started = Date.now();
   for (;;) {
     let fd;

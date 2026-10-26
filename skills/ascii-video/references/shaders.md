@@ -871,7 +871,7 @@ elif name == "reverse_vignette":
 ```python
 def sh_contrast(c, factor=1.3):
     """Adjust contrast around midpoint 128."""
-    return np.clip((c.astype(np.float[REDACTED_PHONE]) * factor + 128, 0, 255).astype(np.uint8)
+    return np.clip((c.astype(np.float32) - 128) * factor + 128, 0, 255).astype(np.uint8)
 ```
 
 #### Gamma

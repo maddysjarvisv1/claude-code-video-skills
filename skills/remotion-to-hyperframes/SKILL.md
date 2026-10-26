@@ -122,7 +122,7 @@ Run the test corpus orchestrator:
 
 It runs T1, T2, T3 (render + diff) and T4 (lint validation), prints a per-tier pass/fail table, and emits an aggregate JSON report. Use this to verify the skill is working end-to-end on a clean checkout — and as a regression check after editing any reference.
 
-Validated baseline (as of [REDACTED_PHONE]):
+Validated baseline (as of 2026-04-27):
 
 | Tier | Composition shape                           | Mean SSIM | Threshold |
 | ---- | ------------------------------------------- | --------- | --------- |

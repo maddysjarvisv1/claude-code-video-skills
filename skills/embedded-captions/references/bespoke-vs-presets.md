@@ -172,7 +172,7 @@ In those cases, start with plan.json + custom_css and iterate.
 
 ```bash
 ls <project>/history/
-diff <project>/history/index-[REDACTED_PHONE].html <project>/index.html
+diff <project>/history/index-20260422-203947.html <project>/index.html
 ```
 
 This lets you recover a design you iterated away from, without re-reading the agent transcript.

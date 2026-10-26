@@ -55,12 +55,12 @@ async def generate_bgm(args: argparse.Namespace) -> dict:
     from google import genai
     from google.genai import types
 
-    api_key = [REDACTED]"GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY") or ""
+    api_key = os.environ.get("GOOGLE_API_KEY") or os.environ.get("GEMINI_API_KEY") or ""
     if not api_key:
-        [REDACTED] RuntimeError("Neither GOOGLE_API_KEY nor GEMINI_API_KEY is set.")
+        raise RuntimeError("Neither GOOGLE_API_KEY nor GEMINI_API_KEY is set.")
 
     client = genai.Client(
-        api_key=[REDACTED]
+        api_key=api_key,
         http_options={"api_version": "v1alpha"},
     )
 

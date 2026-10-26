@@ -59,8 +59,8 @@
       for (let i = 0; i < COUNT; i++) {
         const col = i % COLS;
         const row = Math.floor(i / COLS);
-        const dx = (((i * 53) % [REDACTED_PHONE]) * 9; // far-flung scatter X
-        const dy = (((i * 89) % [REDACTED_PHONE]) * 7; // far-flung scatter Y
+        const dx = (((i * 53) % 200) - 100) * 9; // far-flung scatter X
+        const dy = (((i * 89) % 200) - 100) * 7; // far-flung scatter Y
         const rot = ((i * 37) % 80) - 40; // deterministic tilt
         const order = col + row; // diagonal land sequence
         tl.fromTo(

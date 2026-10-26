@@ -34,7 +34,7 @@ These are NOT advanced — they're standard motion design patterns that every co
 A path draws itself in real-time, like someone tracing with a pen. Use for revealing diagrams, arrows, connector lines, or brand marks.
 
 ```html
-<svg viewBox="[REDACTED_PHONE]">
+<svg viewBox="0 0 400 200">
   <path
     class="draw-path"
     d="M 50 100 L 200 50 L 350 100"
@@ -70,8 +70,8 @@ Animated noise, particle fields, data visualizations — anything that evolves f
   var ctx = canvas.getContext("2d");
 
   function hash(x, y) {
-    var n = x * [REDACTED_PHONE] + y * [REDACTED_PHONE];
-    n = (n ^ (n >> 13)) * [REDACTED_PHONE];
+    var n = x * 374761393 + y * 668265263;
+    n = (n ^ (n >> 13)) * 1274126177;
     return ((n ^ (n >> 16)) & 0x7fffffff) / 0x7fffffff;
   }
 
@@ -307,7 +307,7 @@ Animate an element along an arbitrary SVG path. Use for sliders following curves
   tl.to(
     ".dot",
     {
-      motionPath: { path: "M 12 300 C [REDACTED_PHONE] S [REDACTED_PHONE]" },
+      motionPath: { path: "M 12 300 C 280 280 520 80 820 50 S 1200 48 1308 38" },
       duration: 1.5,
       ease: "power2.out",
     },

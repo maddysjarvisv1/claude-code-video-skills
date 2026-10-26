@@ -3,10 +3,10 @@ name: short-form-edit
 description: Turn talking-head footage into a finished reel, YouTube Short, or short advertisement with curiosity-led openings, earned payoffs, story-driven cuts, transcript-synced motion graphics, moving B-roll, captions, subtle music, and synchronized sound effects. Use for short-form editing; use edit-video for long-form videos and cut-silences for pause removal alone.
 ---
 
-> **LOCAL INSTALL (Hermes, [REDACTED_PHONE]).** Part of the Herk Edit Kit
-> (github.com/nateherkai/herk-edit-kit, MIT). The kit lives at **`[REDACTED_PATH]`** and its helper
+> **LOCAL INSTALL (Hermes, 2026-10-14).** Part of the Herk Edit Kit
+> (github.com/nateherkai/herk-edit-kit, MIT). The kit lives at **`<home>/herk-edit-kit`** and its helper
 > commands in this skill are **repo-relative** (`scripts/…`, `style-library/…`), so run them with that
-> repo as the working directory: `cd [REDACTED_PATH] && node scripts/…`.
+> repo as the working directory: `cd <home>/herk-edit-kit && node scripts/…`.
 > This kit's own `hyperframes`, `hyperframes-cli` and `hyperframes-registry` skills were deliberately
 > NOT installed — they collide with our live HyperFrames plugin skill set.
 > Brand note: the AIS brand assets in the repo (logo, brand tokens CSS, example content) are **not

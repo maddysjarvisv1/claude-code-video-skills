@@ -46,12 +46,12 @@ function withCleanHeygenEnv(fn) {
 
 test("heygenAuthHeaders does not tag API-key requests as CLI traffic, but still carries the media-use tool tag", () => {
   withCleanHeygenEnv(() => {
-    process.env.HEYGEN_API_KEY = "[REDACTED]";
+    process.env.HEYGEN_API_KEY = "hg_test";
     // API-key requests use normal billing; the backend ignores the cli-source
     // header for them, so it's not sent. The tool-attribution header IS sent on
     // every media-use call (any auth type) so the backend can isolate media-use.
     assert.deepEqual(heygenAuthHeaders(), {
-      "X-Api-Key": "[REDACTED]",
+      "X-Api-Key": "hg_test",
       "X-HeyGen-Client-Source": "media-use",
     });
   });
@@ -66,8 +66,8 @@ test("heygenAuthHeaders tags OAuth requests as CLI traffic and with the media-us
         join(dir, "credentials"),
         JSON.stringify({
           oauth: {
-            access_token: "[REDACTED]",
-            expires_at: "[REDACTED_PHONE]T00:00:00Z",
+            access_token: "at_test",
+            expires_at: "2099-01-01T00:00:00Z",
           },
         }),
       );
@@ -84,8 +84,8 @@ test("heygenAuthHeaders tags OAuth requests as CLI traffic and with the media-us
 
 test("a host-injected HEYGEN_ACCESS_TOKEN wins over an API key and is treated as OAuth", () => {
   withCleanHeygenEnv(() => {
-    process.env.HEYGEN_ACCESS_TOKEN = "[REDACTED]";
-    process.env.HEYGEN_API_KEY = "[REDACTED]";
+    process.env.HEYGEN_ACCESS_TOKEN = "at_host";
+    process.env.HEYGEN_API_KEY = "hg_test";
     assert.deepEqual(heygenAuthHeaders(), {
       Authorization: "Bearer at_host",
       "X-HeyGen-Source": "cli",
@@ -97,7 +97,7 @@ test("a host-injected HEYGEN_ACCESS_TOKEN wins over an API key and is treated as
 
 test("heygenAuthMethod returns api_key for an env API key, without tagging headers", () => {
   withCleanHeygenEnv(() => {
-    process.env.HEYGEN_API_KEY = "[REDACTED]";
+    process.env.HEYGEN_API_KEY = "hg_test";
     assert.equal(heygenAuthMethod(), "api_key");
   });
 });
@@ -111,8 +111,8 @@ test("heygenAuthMethod returns oauth for a live OAuth credential", () => {
         join(dir, "credentials"),
         JSON.stringify({
           oauth: {
-            access_token: "[REDACTED]",
-            expires_at: "[REDACTED_PHONE]T00:00:00Z",
+            access_token: "at_test",
+            expires_at: "2099-01-01T00:00:00Z",
           },
         }),
       );
@@ -157,7 +157,7 @@ test("a project's .env cannot name the HeyGen base, so a shell key never leaves 
       "HEYGEN_API_BASE=https://proxy.example.com\nHEYGEN_ALLOW_HTTP=1\nMEDIA_USE_ENV_BASE_TEST=loaded\n",
     );
     try {
-      process.env.HEYGEN_API_KEY = "[REDACTED]";
+      process.env.HEYGEN_API_KEY = "hg_shell_real";
       loadEnvFromDir(project);
       assert.equal(process.env.MEDIA_USE_ENV_BASE_TEST, "loaded");
       assert.equal(process.env.HEYGEN_API_BASE, undefined);
@@ -226,19 +226,19 @@ test("heygenBase is HeyGen's public API unless a host names another", () => {
 
 test("heygenBase refuses a plain-HTTP host unless HEYGEN_ALLOW_HTTP is set, as the heygen CLI does", () => {
   withCleanHeygenEnv(() => {
-    process.env.HEYGEN_API_BASE = "http://[REDACTED_IP]:4100";
+    process.env.HEYGEN_API_BASE = "http://127.0.0.1:4100";
     assert.throws(() => heygenBase(), /HEYGEN_ALLOW_HTTP=1/);
     process.env.HEYGEN_ALLOW_HTTP = "1";
-    assert.equal(heygenBase(), "http://[REDACTED_IP]:4100/v3");
+    assert.equal(heygenBase(), "http://127.0.0.1:4100/v3");
   });
 });
 
 test("a host gateway (HEYGEN_API_BASE with its own HEYGEN_API_KEY) wins over a host OAuth token", () => {
   withCleanHeygenEnv(() => {
-    process.env.HEYGEN_API_BASE = "http://[REDACTED_IP]:4100";
+    process.env.HEYGEN_API_BASE = "http://127.0.0.1:4100";
     process.env.HEYGEN_ALLOW_HTTP = "1";
-    process.env.HEYGEN_API_KEY = "[REDACTED]";
-    process.env.HEYGEN_ACCESS_TOKEN = "[REDACTED]";
+    process.env.HEYGEN_API_KEY = "gateway-token";
+    process.env.HEYGEN_ACCESS_TOKEN = "at_host";
     assert.deepEqual(heygenAuthHeaders(), {
       "X-Api-Key": "gateway-token",
       "X-HeyGen-Client-Source": "media-use",
@@ -255,13 +255,13 @@ test("heygenJSON sends its request to the host's HEYGEN_API_BASE with the host's
     seen.key = req.headers["x-api-key"];
     res.writeHead(200, { "content-type": "application/json" }).end('{"data":[]}');
   });
-  await new Promise((done) => server.listen(0, "[REDACTED_IP]", done));
+  await new Promise((done) => server.listen(0, "127.0.0.1", done));
   const { port } = /** @type {import("node:net").AddressInfo} */ (server.address());
   try {
     await withCleanHeygenEnv(async () => {
-      process.env.HEYGEN_API_BASE = `http://[REDACTED_IP]:${port}`;
+      process.env.HEYGEN_API_BASE = `http://127.0.0.1:${port}`;
       process.env.HEYGEN_ALLOW_HTTP = "1";
-      process.env.HEYGEN_API_KEY = "[REDACTED]";
+      process.env.HEYGEN_API_KEY = "gateway-token";
       const reply = await heygenJSON("/voices?limit=1", { headers: heygenAuthHeaders() });
       assert.deepEqual(reply, { data: [] });
     });
@@ -277,8 +277,8 @@ test("a base that isn't HeyGen's gets no stored or host OAuth credential, only a
     const dir = mkdtempSync(join(tmpdir(), "heygen-cred-"));
     try {
       process.env.HEYGEN_CONFIG_DIR = dir;
-      writeFileSync(join(dir, "credentials"), JSON.stringify({ api_key: "[REDACTED]" }));
-      process.env.HEYGEN_ACCESS_TOKEN = "[REDACTED]";
+      writeFileSync(join(dir, "credentials"), JSON.stringify({ api_key: "hg_stored" }));
+      process.env.HEYGEN_ACCESS_TOKEN = "at_host";
       process.env.HEYGEN_API_BASE = "https://proxy.example.com";
       assert.equal(heygenCredential(), null);
       assert.throws(() => heygenAuthHeaders(), /no HeyGen credentials/);

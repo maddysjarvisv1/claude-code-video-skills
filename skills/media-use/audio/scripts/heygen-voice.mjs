@@ -44,7 +44,7 @@ async function list(prefix, headers) {
     if (token) query.set("token", token);
     const page = await heygenJSON(`/voices?${query}`, { headers });
     mine.push(...page.data.filter((v) => (v.name ?? "").startsWith(prefix)));
-    token = [REDACTED] ? page.next_token : null;
+    token = page.has_more ? page.next_token : null;
   } while (token);
   // ponytail: the list response has no created_at, so one GET per match; bounded by the clone limit.
   return Promise.all(

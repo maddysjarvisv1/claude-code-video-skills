@@ -27,7 +27,7 @@ Blur sells the speed at the cut, but it must scale with the SUBJECT SIZE:
 
 | Subject                                                | Peak blur   | Why                                                                                                                                                                                                                                                 |
 | ------------------------------------------------------ | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Text-scale (headline, line, word group)                | **10px**    | At 20px text smears into illegibility — the eye loses the word it was tracking and the cut reads as a glitch, not speed. (Learned [REDACTED_PHONE]: the until-now inverse zooms shipped at 20px and read mushy; 10px keeps letterforms readable mid-cut.) |
+| Text-scale (headline, line, word group)                | **10px**    | At 20px text smears into illegibility — the eye loses the word it was tracking and the cut reads as a glitch, not speed. (Learned 2026-06-10: the until-now inverse zooms shipped at 20px and read mushy; 10px keeps letterforms readable mid-cut.) |
 | Full-frame surface (terminal window, card, screenshot) | **18–20px** | Big surfaces have edges and texture that survive heavy blur; lighter blur on a full-frame move reads as a rendering hiccup instead of motion.                                                                                                       |
 
 Both sides of a cut use the SAME peak blur — the value must match at the swap frame.

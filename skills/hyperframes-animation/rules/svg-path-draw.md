@@ -15,7 +15,7 @@ Works on anything with a stroke: `<path>`, `<circle>`, `<rect>`, `<line>`, `<pol
 
 ```html
 <!-- inside a standard scene clip -->
-<svg class="logo-mark" viewBox="[REDACTED_PHONE]" xmlns="http://www.w3.org/2000/svg">
+<svg class="logo-mark" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
   <path id="bar-left" d="M 60 40 L 60 160" />
   <path id="bar-right" d="M 140 40 L 140 160" />
   <path id="bar-mid" d="M 60 100 L 140 100" />

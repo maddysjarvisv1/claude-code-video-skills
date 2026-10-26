@@ -59,7 +59,7 @@ ffmpeg -hide_banner -nostats -loglevel info \
   -f null - 2>"$OUTDIR/ffmpeg.stderr"
 
 # Parse: each line in ssim.log looks like
-#   n:1 Y:0.987655 U:0.992345 V:0.991234 All:0.[REDACTED_PHONE].512345)
+#   n:1 Y:0.987655 U:0.992345 V:0.991234 All:0.989012 (19.512345)
 # We want the All:N column.
 python3 - "$SSIM_LOG" "$SUMMARY" "$THRESHOLD" <<'PY'
 import json, math, re, sys

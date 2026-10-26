@@ -137,7 +137,7 @@ PART_RAIN    = list("|\u2502\u2503\u2551/\\")
 PART_BUBBLE  = list("\u25cb\u25ce\u25c9\u25cf\u2218\u2219\u00b0")
 # Data / tech
 PART_DATA    = list("01{}[]<>|/\\")
-PART_HEX     = list("[REDACTED_PHONE]ABCDEF")
+PART_HEX     = list("0123456789ABCDEF")
 PART_BINARY  = list("01")
 # Mystical
 PART_RUNE    = list("\u16a0\u16a2\u16a6\u16b1\u16b7\u16c1\u16c7\u16d2\u16d6\u16da\u16de\u16df\u2726\u2605")
@@ -545,7 +545,7 @@ ERRORS_ORGANIC = ["CELL_DIVISION_ERR","DNA_MISMATCH","MUTATION_OVERFLOW",
 
 ### Hex Data Stream
 ```python
-hex_str = "".join(random.choice("[REDACTED_PHONE]ABCDEF") for _ in range(random.randint(8,20)))
+hex_str = "".join(random.choice("0123456789ABCDEF") for _ in range(random.randint(8,20)))
 stamp(ch, co, hex_str, rand_row, rand_col, (0, 160, 80))
 ```
 
@@ -874,8 +874,8 @@ These produce qualitatively different textures from sine-based fields — organi
 def _hash2d(ix, iy):
     """Integer-coordinate hash for gradient noise. Returns float32 in [0,1]."""
     # Good-quality hash via large prime mixing
-    n = ix * [REDACTED_PHONE] + iy * [REDACTED_PHONE]
-    n = (n ^ (n >> 13)) * [REDACTED_PHONE]
+    n = ix * 374761393 + iy * 668265263
+    n = (n ^ (n >> 13)) * 1274126177
     return ((n ^ (n >> 16)) & 0x7fffffff).astype(np.float32) / 0x7fffffff
 
 def _smoothstep(t):

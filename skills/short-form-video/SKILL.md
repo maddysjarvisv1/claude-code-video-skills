@@ -3,10 +3,10 @@ name: short-form-video
 description: Maintain the existing May Shorts teaching compositions using their legacy face-mode, scene-overlay, and karaoke-caption patterns. Use only when working on those examples or explicitly requesting this legacy scaffold. For new reels, Shorts, or short advertisements, use short-form-edit.
 ---
 
-> **LOCAL INSTALL (Hermes, [REDACTED_PHONE]).** Part of the Herk Edit Kit
-> (github.com/nateherkai/herk-edit-kit, MIT). The kit lives at **`[REDACTED_PATH]`** and its helper
+> **LOCAL INSTALL (Hermes, 2026-10-14).** Part of the Herk Edit Kit
+> (github.com/nateherkai/herk-edit-kit, MIT). The kit lives at **`<home>/herk-edit-kit`** and its helper
 > commands in this skill are **repo-relative** (`scripts/…`, `style-library/…`), so run them with that
-> repo as the working directory: `cd [REDACTED_PATH] && node scripts/…`.
+> repo as the working directory: `cd <home>/herk-edit-kit && node scripts/…`.
 > This kit's own `hyperframes`, `hyperframes-cli` and `hyperframes-registry` skills were deliberately
 > NOT installed — they collide with our live HyperFrames plugin skill set.
 > Brand note: the AIS brand assets in the repo (logo, brand tokens CSS, example content) are **not
